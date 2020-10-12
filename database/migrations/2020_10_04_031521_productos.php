@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRentaTable extends Migration
+class Productos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateRentaTable extends Migration
      */
     public function up()
     {
-        Schema::create('renta', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('productos', function (Blueprint $table) {
+        $table->bigIncrements('id');
             $table->string('nombre');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateRentaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('renta');
+        //
     }
 }
