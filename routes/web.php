@@ -22,3 +22,7 @@ Route::group(['prefix'=>'api'], function(){
     Route::apiResource('domicilio','domicilio@store');
 
     });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
