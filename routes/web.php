@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix'=>'api'], function(){
+    Route::apiResource('cliente','create_cliente@store');
+    Route::apiResource('productos','productos@store');
+    Route::apiResource('gestor','gestor@store');
+    Route::apiResource('domicilio','domicilio@store');
+
+    });

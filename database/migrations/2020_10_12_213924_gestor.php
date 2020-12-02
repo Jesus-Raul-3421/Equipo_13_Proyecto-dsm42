@@ -17,6 +17,8 @@ class Gestor extends Migration
         $table->bigIncrements('id');
             $table->string('fecha inicio');
             $table->string('fecha final');
+            $table->boolean('producto');
+            $table->boolean('categoria');
             $table->timestamps();
         });
     }
