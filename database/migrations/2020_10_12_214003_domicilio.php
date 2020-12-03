@@ -32,6 +32,6 @@ class Domicilio extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('domicilio');
     }
 }

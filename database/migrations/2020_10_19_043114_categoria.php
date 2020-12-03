@@ -18,18 +18,18 @@ class Categoria extends Migration
         $table->string('nombre');
         $table->string('Tipo');
         $table->integer('nivel');
-        $table->string('descricion');
+        $table->string('descricion',200);
         $table->timestamps();
-    });
+        });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations
      *
      * @return void
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('categoria');
     }
 }

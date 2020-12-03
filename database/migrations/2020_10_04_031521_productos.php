@@ -16,10 +16,9 @@ class Productos extends Migration
         Schema::create('productos', function (Blueprint $table) {
         $table->bigIncrements('id');
             $table->string('nombre');
-            $table->decimal('precio', 8, 2);
             $table->longText('descricion');
             $table->integer('categoria');
-            $table->timestamps();
+            $table->timestamps();            
         });
     }
 
@@ -30,6 +29,6 @@ class Productos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('productos');
     }
 }

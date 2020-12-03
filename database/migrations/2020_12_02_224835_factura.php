@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Gestor extends Migration
+class Factura extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class Gestor extends Migration
      */
     public function up()
     {
-        Schema::create('gestor', function (Blueprint $table) {
+        Schema::create('factura', function (Blueprint $table) {
         $table->bigIncrements('id');
-            $table->string('fecha inicio');
-            $table->string('fecha final');
-            $table->boolean('administracion poductos');
-            $table->boolean('administracion categorias');
-            $table->timestamps();
-        });
+        $table->string('numero',20);
+        $table->date('fecha');
+        $table->string('id cliente',20);
+        $table->timestamps();
+    });
     }
 
     /**
@@ -30,6 +29,6 @@ class Gestor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gestor');
+        Schema::dropIfExists('factura');
     }
 }
