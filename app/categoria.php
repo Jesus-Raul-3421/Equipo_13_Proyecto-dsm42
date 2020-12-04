@@ -16,6 +16,6 @@ class Categorias extends Modelo
 
     public function categoriesProducts()
     {
-        return $this->belongsToMany(Productos::class);
+        return $this->belongsToMany(productos::class);
     }
 }

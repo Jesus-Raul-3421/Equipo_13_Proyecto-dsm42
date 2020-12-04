@@ -1,19 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\tienda;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\tienda;
+use App\Http\Requests\factura as facturaRequests;
 
-class gestor extends Controller
+class factura extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    protected $factura;
+    public function __construct (factura $factura) {
+    $this->factura = $factura;
+    }
+
     public function index()
     {
         //
+        $factura = factura ::all();
+        return response()->json(['factura '=> $factura]);
     }
 
     /**
@@ -35,6 +45,12 @@ class gestor extends Controller
     public function store(Request $request)
     {
         //
+        $factura = $this->factura->create($request->all());
+        if($factura = true){
+            return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
+        }
     }
 
     /**
@@ -46,6 +62,8 @@ class gestor extends Controller
     public function show($id)
     {
         //
+        $factura = factura::find($id);
+        return response()->json($factura); 
     }
 
     /**
@@ -66,9 +84,15 @@ class gestor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(facturaRequest $request,factura $factura)
     {
         //
+        $factura->update($request->all());
+        if($factura = true){
+            return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
+        }
     }
 
     /**
@@ -77,8 +101,10 @@ class gestor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(factura $factura)
     {
         //
+        $factura->delete();
+        return response()->json('el registro a sido eliminado ');
     }
 }

@@ -1,19 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\tienda;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\tienda;
+use App\Http\Requests\categoria as categoriaRequests;
 
-class cliente extends Controller
+class categoria extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    protected $categoria;
+       public function __construct (categoria $categoria) {
+       $this->categoria = $categoria;
+       }
+
     public function index()
     {
         //
+        $categoria = categoria ::all();
+        return response()->json(['categoria'=> $categoria]);
     }
 
     /**
@@ -35,6 +45,12 @@ class cliente extends Controller
     public function store(Request $request)
     {
         //
+        $categoria = $this->categoria->create($request->all());
+        if($cliente = true){
+            return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
+        }
     }
 
     /**
@@ -57,6 +73,8 @@ class cliente extends Controller
     public function edit($id)
     {
         //
+        $categoria = categoria::find($id);
+        return response()->json($categoria); 
     }
 
     /**
@@ -66,9 +84,15 @@ class cliente extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(categoriaRequest $request,categoria $categoria)
     {
         //
+        $categoria->update($request->all());
+        if($categoria = true){
+            return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
+        }
     }
 
     /**
@@ -77,8 +101,10 @@ class cliente extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(categoria $categoria)
     {
         //
+        $categoria->delete();
+        return response()->json('el registro a sido eliminado ');
     }
 }
