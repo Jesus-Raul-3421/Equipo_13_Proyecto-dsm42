@@ -25,7 +25,9 @@ class facturaRequests extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+            'numero'=> 'required',
+            'fecha'=> 'required',
+            'id cliente'=> 'required',
 
         ];
     }

@@ -25,7 +25,11 @@ class domicilioRequests extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+        'direccion'=> 'required',
+        'codigo postal'=> 'required',
+        'telefono'=> 'required',
+        'pais'=> 'required',
+        'provivencia'=> 'required',
 
         ];
     }

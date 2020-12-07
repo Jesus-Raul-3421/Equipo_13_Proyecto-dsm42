@@ -25,7 +25,10 @@ class categoriaRequests extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+        'nombre'=> 'required',
+         'Tipo'=> 'required',
+          'nivel'=> 'required',
+          'descricion'=> 'required',
 
         ];
     }

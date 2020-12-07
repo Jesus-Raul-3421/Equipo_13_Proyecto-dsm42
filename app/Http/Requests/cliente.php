@@ -25,7 +25,10 @@ class cliente extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+        'nombre'=> 'required',
+        'apellido'=> 'required',
+        'correo'=> 'required',
+        'telefono'=> 'required',
 
         ];
     }

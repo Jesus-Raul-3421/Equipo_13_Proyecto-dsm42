@@ -25,7 +25,10 @@ class detalle_factura extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+        'numero detalle'=> 'required',
+        'numero de factura'=> 'required',
+        'id producto'=> 'required',
+        'cantidad'=> 'required',
 
         ];
     }

@@ -25,7 +25,10 @@ class productos extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+        'nombre'=> 'required',
+        'descricion'=> 'required',
+        'categoria'=> 'required',
+        
 
         ];
     }

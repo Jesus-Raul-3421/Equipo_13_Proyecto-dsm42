@@ -25,8 +25,10 @@ class gesstor extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
-
+        'fecha inicio'=> 'required',
+        'fecha final'=> 'required',
+        'administracion poductos'=> 'required',
+        'administracion categorias'=> 'required',
         ];
     }
 }

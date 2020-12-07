@@ -25,7 +25,7 @@ class categoria_producto extends FormRequest
     {
         return [
             //
-            'nombre' => 'required'
+            'id' => 'required'
 
         ];
     }
