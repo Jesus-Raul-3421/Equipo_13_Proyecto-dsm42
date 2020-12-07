@@ -4,6 +4,8 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\tienda;
+use App\Http\Requests\gestor as gestorRequests;
 
 class gestor extends Controller
 {
@@ -12,9 +14,16 @@ class gestor extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $gestor;
+       public function __construct (gestor $gestor) {
+       $this->gestor = $gestor;
+       }
+
     public function index()
     {
         //
+        $gestor = gestor ::all();
+        return response()->json(['gestor'=> $gestor]);
     }
 
     /**
@@ -25,6 +34,7 @@ class gestor extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -36,6 +46,12 @@ class gestor extends Controller
     public function store(Request $request)
     {
         //
+        $gestor = $this->gestor->create($request->all());
+        if($gestor = true){
+            return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
+        }
     }
 
     /**
@@ -47,6 +63,8 @@ class gestor extends Controller
     public function show($id)
     {
         //
+        $gestor = gestor::find($id);
+        return response()->json($gestor); 
     }
 
     /**
@@ -67,9 +85,15 @@ class gestor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(gestorRequest $request,gestor $gestor)
     {
         //
+        $gestor->update($request->all());
+        if($gestor= true){
+            return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
+        }
     }
 
     /**
@@ -78,8 +102,10 @@ class gestor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(gestor $gestor)
     {
         //
+        $gestor->delete();
+        return response()->json('el registro a sido eliminado ');
     }
 }

@@ -3,19 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+class categorias extends Modelo
+{
+    use Notifiable;
 
-class categorias extends Model
-{
-    //
-}
-class Categorias extends Modelo
-{
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'nombre', 'status', 'url'
+        'nombre',
+         'Tipo',
+          'nivel',
+          'descricion',
     ];
 
-    public function categoriesProducts()
-    {
-        return $this->belongsToMany(productos::class);
-    }
+    
 }

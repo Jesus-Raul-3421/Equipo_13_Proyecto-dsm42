@@ -14,9 +14,16 @@ class domicilio extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $domicilio;
+       public function __construct (domicilio $domicilio) {
+       $this->domicilio = $domicilio;
+       }
+
     public function index()
     {
         //
+        $domicilio = domicilio::all();
+        return response()->json(['domicilio'=> $domicilio]);
     }
 
     /**
@@ -38,6 +45,12 @@ class domicilio extends Controller
     public function store(Request $request)
     {
         //
+        $domicilio = $this->domicilio->create($request->all());
+        if($domicilio = true){
+            return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
+        }
     }
 
     /**
@@ -49,6 +62,8 @@ class domicilio extends Controller
     public function show($id)
     {
         //
+        $domicilio = domicilio ::find($id);
+        return response()->json($domicilio); 
     }
 
     /**
@@ -69,9 +84,15 @@ class domicilio extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(domicilioRequest $request,domicilio $domicilio)
     {
         //
+        $domicilio->update($request->all());
+        if($domicilio = true){
+            return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
+        }else{
+            return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
+        }
     }
 
     /**
@@ -80,8 +101,10 @@ class domicilio extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(domicilio $domicilio)
     {
         //
+        $domicilio->delete();
+        return response()->json('el registro a sido eliminado ');
     }
 }
