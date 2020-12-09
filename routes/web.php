@@ -15,14 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix'=>'api'], function(){
-    Route::apiResource('cliente','create_cliente@store');
-    Route::apiResource('productos','productos@store');
-    Route::apiResource('gestor','gestor@store');
-    Route::apiResource('domicilio','domicilio@store');
-
-    });
+Route::get('/vist',function(){
+    return View::make('vist');
+});
 
 Auth::routes();
 
+Route::get('/producto', 'tienda\producto@page')->name('producto');
+Route::get('/categoria', 'tienda\categoria@page')->name('categoria');
+Route::get('/cliente', 'tienda\cliente@page')->name('cliente');
+Route::get('/domicilio', 'tienda\domicilio@page')->name('domicilio');
 Route::get('/home', 'HomeController@index')->name('home');
