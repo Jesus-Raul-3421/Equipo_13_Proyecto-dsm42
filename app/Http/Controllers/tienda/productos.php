@@ -4,7 +4,7 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\tienda;
+use App\Producto;
 use App\Http\Requests\productos as productosRequests;
 
 class productos extends Controller
@@ -15,15 +15,21 @@ class productos extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $productos;
-    public function __construct (productos $productos) {
+    public function __construct (Producto $productos) {
     $this->productos = $productos;
     }
+    
+    public function page()
+    {
+        return view('productos.index');
+    }
+
 
     public function index()
     {
         //
-        $productos = productos ::all();
-        return response()->json(['productos'=> $productos]);
+        $productos = Producto ::all();
+        return response()->json(['Producto'=> $productos]);
     }
 
     /**
@@ -45,7 +51,7 @@ class productos extends Controller
     public function store(Request $request)
     {
         //
-        $productos = $this->productos->create($request->all());
+        $productos = $this->Producto->create($request->all());
         if($productos = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
@@ -62,7 +68,7 @@ class productos extends Controller
     public function show($id)
     {
         //
-        $productos = productos::find($id);
+        $productos = Producto::find($id);
         return response()->json($productos); 
     }
 
@@ -106,5 +112,6 @@ class productos extends Controller
         //
         $productos->delete();
         return response()->json('el registro a sido eliminado ');
+ 
     }
 }

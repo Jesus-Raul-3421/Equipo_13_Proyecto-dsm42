@@ -15,7 +15,10 @@ class CategoriaProducto extends Migration
     {
         Schema::create('categoria_producto', function (Blueprint $table) {
         $table->bigIncrements('id');
-        $table->foreign('id')->references('id')->on('categoria');
+        $table->bigInteger('categoria_id')->unsigned();
+        $table->bigInteger('productos_id')->unsigned();
+        $table->foreign('categoria_id')->references('id')->on('categoria');
+        $table->foreign('productos_id')->references('id')->on('productos');
         $table->timestamps();
     });
     }

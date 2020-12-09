@@ -4,7 +4,7 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\tienda;
+use App\clientes;
 use App\Http\Requests\cliente as clienteRequests;
 
 class cliente extends Controller
@@ -15,10 +15,16 @@ class cliente extends Controller
      * @return \Illuminate\Http\Response
      */
        protected $cliente;
-       public function __construct (Materias $cliente) {
-       $this->cliente = $cliente;
+       public function __construct (clientes $cliente) {
+       $this->clientes = $cliente;
 
    }
+   
+   public function page()
+       {
+           return view('cliente.index');
+       }
+
 
     /**
      * Display a listing of the resource.
@@ -28,8 +34,8 @@ class cliente extends Controller
     public function index()
     {
         //
-        $cliente = cliente ::all();
-        return response()->json(['cliente'=> $cliente]);
+        $cliente = clientes ::all();
+        return response()->json(['clientes'=> $cliente]);
     }
 
     /**
@@ -51,7 +57,7 @@ class cliente extends Controller
     public function store(Request $request)
     {
         //
-        $cliente = $this->cliente->create($request->all());
+        $cliente = $this->clientes->create($request->all());
         if($cliente = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
@@ -68,7 +74,7 @@ class cliente extends Controller
     public function show($id)
     {
         //
-        $cliente = cliente::find($id);
+        $cliente = clientes::find($id);
         return response()->json($cliente); 
     }
 

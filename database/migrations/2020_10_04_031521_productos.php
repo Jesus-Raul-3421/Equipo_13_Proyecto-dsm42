@@ -18,7 +18,8 @@ class Productos extends Migration
             $table->string('nombre');
             $table->longText('descricion');
             $table->integer('categoria');
-            $table->timestamps();            
+            $table->timestamps();  
+            $table->softDeletes();          
         });
     }
 

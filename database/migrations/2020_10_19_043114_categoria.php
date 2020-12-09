@@ -20,6 +20,7 @@ class Categoria extends Migration
         $table->integer('nivel');
         $table->string('descricion',200);
         $table->timestamps();
+        $table->softDeletes();
         });
     }
 

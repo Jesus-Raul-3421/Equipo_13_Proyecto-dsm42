@@ -18,8 +18,13 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+import axios from 'axios';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('Categoria', require('./components/Categoria/ShowComponent.vue').default);
+Vue.component('Cliente', require('./components/Cliente/ShowComponent.vue').default);
+Vue.component('Domicilio', require('./components/Domicilio/ShowComponent.vue').default);
+Vue.component('Productos', require('./components/Productos/ShowComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

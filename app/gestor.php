@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-class gestor extends Model
+class Gestor extends Model
 {
     use Notifiable;
 
