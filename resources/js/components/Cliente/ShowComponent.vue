@@ -14,15 +14,13 @@
                                 <th scope="col">apellido</th>
                                 <th scope="col">correo</th>
                                 <th scope="col">telefono</th>
+                                <th scope="col">Acciones</th>
                              </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="cliente in cliente" :key="cliente.id">
                                 <td v-text="cliente.id"></td>
                                 <td v-text="cliente.nombre"></td>
-                                <td v-text="cliente.apellido"></td>
-                                <td v-text="cliente.correo"></td>
-                                <td v-text="cliente.telefono"></td>
                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(cliente)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deletecliente" type="button" class="btn btn-danger" v-on:click="deleteid(cliente)"><i class="fas fa-trash"></i></button></td>
@@ -58,6 +56,35 @@
                         </div>
 
                 </div>
+             
+             <div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Dar de alta a un nuevo cliente</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form @submit.prevent="Crearcliente()">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">cliente:</label>
+                                    <input type="text" v-model="nuevocliente.nombre" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" name="action" class="btn btn-primary">Guardar</button>
+                                </div>
+                                </form>
+                            </div>
+                        
+                            </div>
+
+                        </div>
+
+                </div>
+
             
                 <div class="modal fade" id="deletecliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -150,7 +177,21 @@
                 toastr.error('error al actualizar');
 
             });
-        }
-    }
+             
+        },
+         Crearcliente(){
+            
+            let url="cliente";
+            axios.post(url,this.nuevocliente).then(response=>{
+               
+                this.nuevocliente.nombre="";
+                $('#guardarModal').modal('hide');
+                toastr.success('Se dio de alta el cliente'); 
+                this.getcategoria();
+            }).catch(error=>{
+                toastr.error('error al guardar');
+             });
+         } 
+    },
  }
 </script>

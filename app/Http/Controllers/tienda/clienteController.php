@@ -4,26 +4,35 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\tienda;
-use App\Http\Requests\detalle_factura as detalle_facturaRequests;
+use App\cliente;
+use App\Http\Requests\cliente as clienteRequests;
 
-class detalle_factura extends Controller
+class clienteController extends Controller
 {
+ /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+       protected $cliente;
+       public function __construct (cliente $cliente) {
+       $this->cliente = $cliente;
+
+   }
+   
+   
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $detalle_factura;
-    public function __construct (detalle_factura $detalle_factura) {
-    $this->detalle_factura = $detalle_factura;
-
-}
     public function index()
     {
         //
-        $detalle_factura = detalle_factura ::all();
-        return response()->json(['detalle_factura '=> $detalle_factura]);
+        
+        $cliente = cliente ::all();
+        return response()->json(['cliente'=> $cliente]);
     }
 
     /**
@@ -45,8 +54,8 @@ class detalle_factura extends Controller
     public function store(Request $request)
     {
         //
-        $detalle_factura = $this->detalle_factura->create($request->all());
-        if($detalle_factura = true){
+        $cliente = $this->cliente->create($request->all());
+        if($cliente = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -62,8 +71,8 @@ class detalle_factura extends Controller
     public function show($id)
     {
         //
-        $detalle_factura = detalle_factura::find($id);
-        return response()->json($detalle_factura); 
+        $cliente = cliente::find($id);
+        return response()->json($cliente); 
     }
 
     /**
@@ -84,11 +93,11 @@ class detalle_factura extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(detalle_facturaRequest $request,detalle_factura $detalle_factura)
+    public function update(clienteRequest $request,cliente $cliente)
     {
         //
-        $detalle_factura->update($request->all());
-        if($detalle_factura = true){
+        $cliente->update($request->all());
+        if($cliente = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -101,10 +110,10 @@ class detalle_factura extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(detalle_factura $detalle_factura)
+    public function destroy(cliente $cliente)
     {
         //
-        $detalle_factura->delete();
+        $cliente->delete();
         return response()->json('el registro a sido eliminado ');
     }
 }

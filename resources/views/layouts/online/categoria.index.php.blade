@@ -23,14 +23,12 @@
                             <th>Tipo</th>
                             <th>nivel</th>
                             <th>descripcion</th>
+                             <th>Acciones</th>
                             </thead>
                             <body>
                             <tr v-for="categoria in categoria">
                                 <td v-text="categoria.id"></td>
                                 <td v-text="categoria.nombre"></td>
-                                <td v-text="categoria.Tipo"></td>
-                                <td v-text="categoria.nivel"></td>
-                                <td v-text="categoria.descripcion"></td>
                                 <td><button>Edit</button></td>
                                 </tr>
                             </body>

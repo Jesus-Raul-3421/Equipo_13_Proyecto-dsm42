@@ -4,26 +4,26 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\tienda;
-use App\Http\Requests\gestor as gestorRequests;
+use App\factura;
+use App\Http\Requests\factura as facturaRequests;
 
-class gestor extends Controller
+class facturaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $gestor;
-       public function __construct (gestor $gestor) {
-       $this->gestor = $gestor;
-       }
+    protected $factura;
+    public function __construct (factura $factura) {
+    $this->factura = $factura;
+    }
 
     public function index()
     {
         //
-        $gestor = gestor ::all();
-        return response()->json(['gestor'=> $gestor]);
+        $factura = factura ::all();
+        return response()->json(['factura '=> $factura]);
     }
 
     /**
@@ -34,7 +34,6 @@ class gestor extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -46,8 +45,8 @@ class gestor extends Controller
     public function store(Request $request)
     {
         //
-        $gestor = $this->gestor->create($request->all());
-        if($gestor = true){
+        $factura = $this->factura->create($request->all());
+        if($factura = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -63,8 +62,8 @@ class gestor extends Controller
     public function show($id)
     {
         //
-        $gestor = gestor::find($id);
-        return response()->json($gestor); 
+        $factura = factura::find($id);
+        return response()->json($factura); 
     }
 
     /**
@@ -85,11 +84,11 @@ class gestor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(gestorRequest $request,gestor $gestor)
+    public function update(facturaRequest $request,factura $factura)
     {
         //
-        $gestor->update($request->all());
-        if($gestor= true){
+        $factura->update($request->all());
+        if($factura = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -102,10 +101,10 @@ class gestor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gestor $gestor)
+    public function destroy(factura $factura)
     {
         //
-        $gestor->delete();
+        $factura->delete();
         return response()->json('el registro a sido eliminado ');
     }
 }

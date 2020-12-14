@@ -23,15 +23,13 @@
                             <th>apellido</th>
                             <th>correo</th>
                              <th>telefono</th>
+                             <th>Acciones</th>
                             </thead>
                             <body>
                             <tr v-for="cliente in cliente">
                                 <td v-text="cliente.id"></td>
                                 <td v-text="cliente.nombre"></td>
-                                 <td v-text="cliente.apellido"></td>
-                                  <td v-text="cliente.correo"></td>
-                                   <td v-text="cliente.telefono"></td>
-                                <td><button>Edit</button></td>
+                                 <td><button>Edit</button></td>
                                 </tr>
                             </body>
 

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Domicilio;
+use App\domicilio;
 use App\Http\Requests\domicilio as domicilioRequests;
 
-class domicilio extends Controller
+class domicilioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,16 @@ class domicilio extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $domicilio;
-       public function __construct (Domicilio $domicilio) {
-       $this->Domicilio = $domicilio;
+       public function __construct (domicilio $domicilio) {
+       $this->domicilio = $domicilio;
        }
+      
 
     public function index()
     {
         //
         $domicilio = domicilio::all();
-        return response()->json(['Domicilio'=> $domicilio]);
+        return response()->json(['domicilio'=> $domicilio]);
     }
 
     /**
@@ -45,7 +46,7 @@ class domicilio extends Controller
     public function store(Request $request)
     {
         //
-        $domicilio = $this->Domicilio->create($request->all());
+        $domicilio = $this->domicilio->create($request->all());
         if($domicilio = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{

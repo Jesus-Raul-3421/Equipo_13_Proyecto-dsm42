@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-class Factura extends Model
+class factura extends Model
 {
     use Notifiable;
 

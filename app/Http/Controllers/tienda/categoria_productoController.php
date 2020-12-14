@@ -4,38 +4,26 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\clientes;
-use App\Http\Requests\cliente as clienteRequests;
+use App\categoria_producto;
+use App\Http\Requests\categoria_producto as categoria_productoRequests;
 
-class cliente extends Controller
+class categoria_productoController extends Controller
 {
- /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-       protected $cliente;
-       public function __construct (clientes $cliente) {
-       $this->clientes = $cliente;
-
-   }
-   
-   public function page()
-       {
-           return view('cliente.index');
-       }
-
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+       protected $categoria_producto;
+       public function __construct (categoria_producto $categoria_producto) {
+       $this->categoria_producto = $categoria_producto;
+       }
+
     public function index()
     {
         //
-        $cliente = clientes ::all();
-        return response()->json(['clientes'=> $cliente]);
+        $categoria_producto = categoria_producto ::all();
+        return response()->json(['categoria_producto'=> $categoria_producto]);
     }
 
     /**
@@ -57,8 +45,8 @@ class cliente extends Controller
     public function store(Request $request)
     {
         //
-        $cliente = $this->clientes->create($request->all());
-        if($cliente = true){
+        $categoria_producto = $this->categoria_producto->create($request->all());
+        if($categoria_producto = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -74,8 +62,8 @@ class cliente extends Controller
     public function show($id)
     {
         //
-        $cliente = clientes::find($id);
-        return response()->json($cliente); 
+        $categoria_producto = categoria_producto::find($id);
+        return response()->json($categoria_producto); 
     }
 
     /**
@@ -96,11 +84,11 @@ class cliente extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(clienteRequest $request,cliente $cliente)
+    public function update(categoria_productoRequest $request,categoria_producto $categoria_producto)
     {
         //
-        $cliente->update($request->all());
-        if($cliente = true){
+        $categoria_producto->update($request->all());
+        if($categoria_producto = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -113,10 +101,10 @@ class cliente extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cliente $cliente)
+    public function destroy(categoria_producto $categoria_producto)
     {
         //
-        $cliente->delete();
+        $categoria_producto->delete();
         return response()->json('el registro a sido eliminado ');
     }
 }

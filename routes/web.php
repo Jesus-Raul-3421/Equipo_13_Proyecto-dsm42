@@ -20,9 +20,9 @@ Route::get('/vist',function(){
 });
 
 Auth::routes();
-
-Route::get('/producto', 'tienda\producto@page')->name('producto');
-Route::get('/categoria', 'tienda\categoria@page')->name('categoria');
-Route::get('/cliente', 'tienda\cliente@page')->name('cliente');
-Route::get('/domicilio', 'tienda\domicilio@page')->name('domicilio');
+Route::get('/producto', 'Controller\productoController@index')->name('producto');
+Route::get('/categoria', 'Controller\categoriaController@index')->name('categoria');
+Route::get('/cliente', 'Controller\clienteController@index')->name('cliente');
+Route::get('/domicilio', 'Controller\domicilioController@index')->name('domicilio');
 Route::get('/home', 'HomeController@index')->name('home');
+

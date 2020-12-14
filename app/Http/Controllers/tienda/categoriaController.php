@@ -4,10 +4,10 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\categorias;
+use App\categoria;
 use App\Http\Requests\categoria as categoriaRequests;
 
-class categoria extends Controller
+class categoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,21 +15,18 @@ class categoria extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $categoria;
-       public function __cosnstruct (categorias $categoria) {
+       public function __cosnstruct (categoria $categoria) {
        $this->categoria = $categoria;
        }
       
-       public function page()
-       {
-           return view('categoria.index');
-       }
-
+      
 
     public function index()
     {
         //
-        $categoria = categorias ::all();
-        return response()->json(['categorias'=> $categoria]);
+        
+        $categoria = categoria ::all();
+        return response()->json(['categoria'=> $categoria]);
     }
 
     /**
@@ -51,7 +48,7 @@ class categoria extends Controller
     public function store(Request $request)
     {
         //
-        $categoria = $this->categorias->create($request->all());
+        $categoria = $this->categoria->create($request->all());
         if($cliente = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{

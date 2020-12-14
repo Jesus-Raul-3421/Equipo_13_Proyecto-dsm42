@@ -21,11 +21,7 @@
                                 <tr v-for="domicilio in domicilio" :key="domicilio.id">
                                 <td v-text="domicilio.id"></td>
                                 <td v-text="domicilio.direccion"></td>
-                                <td v-text="domicilio.codigo_postal"></td>
-                                <td v-text="domicilio.telefono"></td>
-                                <td v-text="domicilio.pais"></td>
-                                <td v-text="domicilio.provivencia"></td>
-                                <td>
+                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(domicilio)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deletedomicilio" type="button" class="btn btn-danger" v-on:click="deleteid(domicilio)"><i class="fas fa-trash"></i></button></td>
                                 </tr>
@@ -51,6 +47,34 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button ttype="submit" name="action" class="btn btn-primary">Actualizar</button>
                                                                    
+                                </div>
+                                </form>
+                            </div>
+                        
+                            </div>
+
+                        </div>
+
+                </div>
+               
+                <div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">dar de alta el domicilio</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form @submit.prevent="Creardomicilio()">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">domicilio:</label>
+                                    <input type="text" v-model="nuevodomicilio.direccion" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" name="action" class="btn btn-primary">Guardar</button>
                                 </div>
                                 </form>
                             </div>
@@ -152,7 +176,21 @@
                 toastr.error('error al actualizar');
 
             });
-        }
-    }
+        },
+         
+         Creardomicilio(){
+            
+            let url="domicilio";
+            axios.post(url,this.nuevodomicilio).then(response=>{
+               
+                this.nuevodomicilio.direccion="";
+                $('#guardarModal').modal('hide');
+                toastr.success('Se dio de alta una nueva direccion'); 
+                this.getcategoria();
+            }).catch(error=>{
+                toastr.error('error al guardar');
+             });
+         } 
+    },
  }
 </script>

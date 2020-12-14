@@ -14,15 +14,13 @@
                                 <th scope="col">Tipo</th>
                                 <th scope="col">nivel</th>
                                 <th scope="col">descripcion</th>
+                                <th scope="col">Acciones</th>
                              </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="categoria in categoria" :key="categoria.id">
                                 <td v-text="categoria.id"></td>
                                 <td v-text="categoria.nombre"></td>
-                                <td v-text="categoria.Tipo"></td>
-                                <td v-text="categoria.nivel"></td>
-                                <td v-text="categoria.descripcion"></td>
                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(categoria)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deletecategoria" type="button" class="btn btn-danger" v-on:click="deleteid(categoria)"><i class="fas fa-trash"></i></button></td>
@@ -49,6 +47,34 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button ttype="submit" name="action" class="btn btn-primary">Actualizar</button>
                                                                    
+                                </div>
+                                </form>
+                            </div>
+                        
+                            </div>
+
+                        </div>
+
+                </div>
+
+                <div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Dar de de alta una nueva categoria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form @submit.prevent="Crearcategoria()">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">categoria:</label>
+                                    <input type="text" v-model="nuevacategoria.nombre" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" name="action" class="btn btn-primary">Guardar</button>
                                 </div>
                                 </form>
                             </div>
@@ -150,7 +176,21 @@
                 toastr.error('error al actualizar');
 
             });
-        }
-    }
+        },
+       
+       Crearcategoria(){
+            
+            let url="categoria";
+            axios.post(url,this.nuevacategoria).then(response=>{
+               
+                this.nuevacategoria.nombre="";
+                $('#guardarModal').modal('hide');
+                toastr.success('La categoria se dio de alta'); 
+                this.getcategoria();
+            }).catch(error=>{
+                toastr.error('error al guardar');
+             });
+         }   
+    },
  }
 </script>

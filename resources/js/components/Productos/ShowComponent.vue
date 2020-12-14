@@ -13,14 +13,13 @@
                                 <th scope="col">nombre</th>
                                 <th scope="col">descripcion</th>
                                  <th scope="col">categoria</th>
+                                 <th scope="col">Acciones</th>
                              </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="productos in productos" :key="productos.id">
                                 <td v-text="productos.id"></td>
                                 <td v-text="productos.nombre"></td>
-                                <td v-text="productos.descripcion"></td>
-                                <td v-text="productos.categoria"></td>
                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(productos)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deleteproductos" type="button" class="btn btn-danger" v-on:click="deleteid(productos)"><i class="fas fa-trash"></i></button></td>
@@ -47,6 +46,34 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button ttype="submit" name="action" class="btn btn-primary">Actualizar</button>
                                                                    
+                                </div>
+                                </form>
+                            </div>
+                        
+                            </div>
+
+                        </div>
+
+                </div>
+               
+                <div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Dar de alta un Vue.config.productionTip = false</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form @submit.prevent="Crearproductos()">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">productos:</label>
+                                    <input type="text" v-model="nuevoproductos.nombre" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" name="action" class="btn btn-primary">Guardar</button>
                                 </div>
                                 </form>
                             </div>
@@ -148,7 +175,21 @@
                 toastr.error('error al actualizar');
 
             });
-        }
-    }
+        },
+
+         Crearproductos(){
+            
+            let url="categoria";
+            axios.post(url,this.nuevoproductos).then(response=>{
+               
+                this.nuevoproductos.nombre="";
+                $('#guardarModal').modal('hide');
+                toastr.success('Se dio de alta un nuevo producto'); 
+                this.getcategoria();
+            }).catch(error=>{
+                toastr.error('error al guardar');
+             });
+         } 
+    },
  }
 </script>

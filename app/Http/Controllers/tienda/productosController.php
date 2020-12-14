@@ -4,10 +4,10 @@ namespace App\Http\Controllers\tienda;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Producto;
+use App\productos;
 use App\Http\Requests\productos as productosRequests;
 
-class productos extends Controller
+class productosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +15,15 @@ class productos extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $productos;
-    public function __construct (Producto $productos) {
+    public function __construct (productos $productos) {
     $this->productos = $productos;
     }
     
-    public function page()
-    {
-        return view('productos.index');
-    }
-
-
+    
     public function index()
     {
         //
-        $productos = Producto ::all();
+        $productos = productos ::all();
         return response()->json(['Producto'=> $productos]);
     }
 
@@ -51,7 +46,7 @@ class productos extends Controller
     public function store(Request $request)
     {
         //
-        $productos = $this->Producto->create($request->all());
+        $productos = $this->productos->create($request->all());
         if($productos = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
@@ -68,7 +63,7 @@ class productos extends Controller
     public function show($id)
     {
         //
-        $productos = Producto::find($id);
+        $productos = productos::find($id);
         return response()->json($productos); 
     }
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-class clientes extends Model
+class categoria_producto extends Model
 {
     use Notifiable;
 
@@ -14,10 +14,8 @@ class clientes extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre',
-        'apellido',
-        'correo',
-        'telefono',
+        'id',
         
     ];
+
 }
