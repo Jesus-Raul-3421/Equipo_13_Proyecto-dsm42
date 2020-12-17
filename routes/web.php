@@ -15,14 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/vist',function(){
-    return View::make('vist');
-});
+
 
 Auth::routes();
-Route::get('/producto', 'Controller\productoController@index')->name('producto');
+Route::get('/productos', 'Controller\productosController@index')->name('productos');
 Route::get('/categoria', 'Controller\categoriaController@index')->name('categoria');
 Route::get('/cliente', 'Controller\clienteController@index')->name('cliente');
 Route::get('/domicilio', 'Controller\domicilioController@index')->name('domicilio');
 Route::get('/home', 'HomeController@index')->name('home');
+
 

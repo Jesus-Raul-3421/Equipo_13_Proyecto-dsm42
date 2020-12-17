@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">seccion de productos</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,26 +14,27 @@
                         </div>
                     @endif
 
-                    <cliente-index inline-template>
+                    <productos-index inline-template>
                         <table class="table table-hover table-striped">
                         <thead>
                             <tr>
                             <th>id</th>
                             <th>nombre</th>
-                            <th>apellido</th>
-                            <th>correo</th>
-                             <th>telefono</th>
-                             <th>Acciones</th>
+                            <th>descripcion</th>
+                            <th>categoria</th>
+                            <th>Acciones</th>
                             </thead>
                             <body>
-                            <tr v-for="cliente in cliente">
-                                <td v-text="cliente.id"></td>
-                                <td v-text="cliente.nombre"></td>
-                                 <td><button>Edit</button></td>
+                            <tr v-for="productos in productos">
+                                <td v-text="productos.id"></td>
+                                <td v-text="productos.nombre"></td>
+                                <td v-text="productos.descripcion"></td>
+                                <td v-text="productos.categoria"></td>
+                                  <td><button>Edit</button></td>
                                 </tr>
                             </body>
 
-                    </cliente-index>
+                    </productos-index>
                 </div>
             </div>
         </div>

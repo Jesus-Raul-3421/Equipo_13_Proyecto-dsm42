@@ -1,30 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\tienda;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\productos;
-use App\Http\Requests\productos as productosRequests;
+use App\gestor;
+use App\Http\Requests\gestor as gestorRequests;
 
-class productosController extends Controller
+class gestorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $productos;
-    public function __construct (productos $productos) {
-    $this->productos = $productos;
-    }
-    
-    
+    protected $gestor;
+       public function __construct (gestor $gestor) {
+       $this->gestor = $gestor;
+       }
+
     public function index()
     {
         //
-        $productos = productos ::all();
-        return response()->json(['Producto'=> $productos]);
+        $gestor = gestor ::all();
+        return response()->json(['gestor'=> $gestor]);
     }
 
     /**
@@ -35,6 +34,7 @@ class productosController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -46,8 +46,8 @@ class productosController extends Controller
     public function store(Request $request)
     {
         //
-        $productos = $this->productos->create($request->all());
-        if($productos = true){
+        $gestor = $this->gestor->create($request->all());
+        if($gestor = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -63,8 +63,8 @@ class productosController extends Controller
     public function show($id)
     {
         //
-        $productos = productos::find($id);
-        return response()->json($productos); 
+        $gestor = gestor::find($id);
+        return response()->json($gestor); 
     }
 
     /**
@@ -85,11 +85,11 @@ class productosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(productosRequest $request,productos $productos)
+    public function update(gestorRequest $request,gestor $gestor)
     {
         //
-        $productos->update($request->all());
-        if($productos = true){
+        $gestor->update($request->all());
+        if($gestor= true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -102,11 +102,10 @@ class productosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(productos $productos)
+    public function destroy(gestor $gestor)
     {
         //
-        $productos->delete();
+        $gestor->delete();
         return response()->json('el registro a sido eliminado ');
- 
     }
 }

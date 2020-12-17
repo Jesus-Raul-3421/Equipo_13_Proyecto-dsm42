@@ -20,6 +20,8 @@
                                 <tr v-for="productos in productos" :key="productos.id">
                                 <td v-text="productos.id"></td>
                                 <td v-text="productos.nombre"></td>
+                                <td v-text="productos.descripcion"></td>
+                                <td v-text="productos.categoria"></td>
                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(productos)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deleteproductos" type="button" class="btn btn-danger" v-on:click="deleteid(productos)"><i class="fas fa-trash"></i></button></td>
@@ -37,7 +39,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form @submit.prevent="editarproductos()" >
+                                <form @submit.prevent="editarproductos()">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">productos:</label>
                                     <input type="text"  v-model="productosedit.nombre" class="form-control" id="recipient-name">
@@ -113,7 +115,10 @@
             return{
             productos: [],
             productosdelete: [],
-            productosedit: [],    
+            productosedit: [], 
+              nuevoproductos:{
+                    nombre:""
+                } 
                 };
              
             },

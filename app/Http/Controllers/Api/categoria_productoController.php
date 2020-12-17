@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\tienda;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\detalle_factura;
-use App\Http\Requests\detalle_factura as detalle_facturaRequests;
+use App\categoria_producto;
+use App\Http\Requests\categoria_producto as categoria_productoRequests;
 
-class detalle_facturaController extends Controller
+class categoria_productoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $detalle_factura;
-    public function __construct (detalle_factura $detalle_factura) {
-    $this->detalle_factura = $detalle_factura;
+       protected $categoria_producto;
+       public function __construct (categoria_producto $categoria_producto) {
+       $this->categoria_producto = $categoria_producto;
+       }
 
-}
     public function index()
     {
         //
-        $detalle_factura = detalle_factura ::all();
-        return response()->json(['detalle_factura '=> $detalle_factura]);
+        $categoria_producto = categoria_producto ::all();
+        return response()->json(['categoria_producto'=> $categoria_producto]);
     }
 
     /**
@@ -45,8 +45,8 @@ class detalle_facturaController extends Controller
     public function store(Request $request)
     {
         //
-        $detalle_factura = $this->detalle_factura->create($request->all());
-        if($detalle_factura = true){
+        $categoria_producto = $this->categoria_producto->create($request->all());
+        if($categoria_producto = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -62,8 +62,8 @@ class detalle_facturaController extends Controller
     public function show($id)
     {
         //
-        $detalle_factura = detalle_factura::find($id);
-        return response()->json($detalle_factura); 
+        $categoria_producto = categoria_producto::find($id);
+        return response()->json($categoria_producto); 
     }
 
     /**
@@ -84,11 +84,11 @@ class detalle_facturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(detalle_facturaRequest $request,detalle_factura $detalle_factura)
+    public function update(categoria_productoRequest $request,categoria_producto $categoria_producto)
     {
         //
-        $detalle_factura->update($request->all());
-        if($detalle_factura = true){
+        $categoria_producto->update($request->all());
+        if($categoria_producto = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -101,10 +101,10 @@ class detalle_facturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(detalle_factura $detalle_factura)
+    public function destroy(categoria_producto $categoria_producto)
     {
         //
-        $detalle_factura->delete();
+        $categoria_producto->delete();
         return response()->json('el registro a sido eliminado ');
     }
 }

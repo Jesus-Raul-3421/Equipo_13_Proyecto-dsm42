@@ -1,29 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\tienda;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\factura;
-use App\Http\Requests\factura as facturaRequests;
+use App\productos;
+use App\Http\Requests\productos as productosRequests;
 
-class facturaController extends Controller
+class productosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $factura;
-    public function __construct (factura $factura) {
-    $this->factura = $factura;
+    protected $productos;
+    public function __construct (productos $productos) {
+    $this->productos = $productos;
     }
-
+    
+    
+    
     public function index()
     {
         //
-        $factura = factura ::all();
-        return response()->json(['factura '=> $factura]);
+        $productos = productos ::all();
+        return response()->json(['Producto'=> $productos]);
     }
 
     /**
@@ -45,8 +47,8 @@ class facturaController extends Controller
     public function store(Request $request)
     {
         //
-        $factura = $this->factura->create($request->all());
-        if($factura = true){
+        $productos = $this->productos->create($request->all());
+        if($productos = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -62,8 +64,8 @@ class facturaController extends Controller
     public function show($id)
     {
         //
-        $factura = factura::find($id);
-        return response()->json($factura); 
+        $productos = productos::find($id);
+        return response()->json($productos); 
     }
 
     /**
@@ -84,11 +86,11 @@ class facturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(facturaRequest $request,factura $factura)
+    public function update(productosRequest $request,productos $productos)
     {
         //
-        $factura->update($request->all());
-        if($factura = true){
+        $productos->update($request->all());
+        if($productos = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -101,10 +103,11 @@ class facturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(factura $factura)
+    public function destroy(productos $productos)
     {
         //
-        $factura->delete();
+        $productos->delete();
         return response()->json('el registro a sido eliminado ');
+ 
     }
 }

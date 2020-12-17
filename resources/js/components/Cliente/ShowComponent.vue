@@ -21,6 +21,9 @@
                                 <tr v-for="cliente in cliente" :key="cliente.id">
                                 <td v-text="cliente.id"></td>
                                 <td v-text="cliente.nombre"></td>
+                                <td v-text="cliente.apellido"></td>
+                                <td v-text="cliente.correo"></td>
+                                <td v-text="cliente.telefono"></td>
                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(cliente)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deletecliente" type="button" class="btn btn-danger" v-on:click="deleteid(cliente)"><i class="fas fa-trash"></i></button></td>
@@ -115,7 +118,10 @@
             return{
             cliente: [],
             clientedelete: [],
-            clienteedit: [],    
+            clienteedit: [], 
+            nuevocliente:{
+                    nombre:""
+                }   
                 };
              
             },

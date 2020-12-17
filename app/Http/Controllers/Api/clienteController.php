@@ -1,30 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\tienda;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\domicilio;
-use App\Http\Requests\domicilio as domicilioRequests;
+use App\cliente;
+use App\Http\Requests\cliente as clienteRequests;
 
-class domicilioController extends Controller
+class clienteController extends Controller
 {
+ /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+       protected $cliente;
+       public function __construct (cliente $cliente) {
+       $this->cliente = $cliente;
+
+   }
+   
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $domicilio;
-       public function __construct (domicilio $domicilio) {
-       $this->domicilio = $domicilio;
-       }
-      
-
     public function index()
     {
         //
-        $domicilio = domicilio::all();
-        return response()->json(['domicilio'=> $domicilio]);
+        
+        $cliente = cliente ::all();
+        return response()->json(['cliente'=> $cliente]);
     }
 
     /**
@@ -46,8 +53,8 @@ class domicilioController extends Controller
     public function store(Request $request)
     {
         //
-        $domicilio = $this->domicilio->create($request->all());
-        if($domicilio = true){
+        $cliente = $this->cliente->create($request->all());
+        if($cliente = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -63,8 +70,8 @@ class domicilioController extends Controller
     public function show($id)
     {
         //
-        $domicilio = domicilio ::find($id);
-        return response()->json($domicilio); 
+        $cliente = cliente::find($id);
+        return response()->json($cliente); 
     }
 
     /**
@@ -85,11 +92,11 @@ class domicilioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(domicilioRequest $request,domicilio $domicilio)
+    public function update(clienteRequest $request,cliente $cliente)
     {
         //
-        $domicilio->update($request->all());
-        if($domicilio = true){
+        $cliente->update($request->all());
+        if($cliente = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -102,10 +109,10 @@ class domicilioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(domicilio $domicilio)
+    public function destroy(cliente $cliente)
     {
         //
-        $domicilio->delete();
+        $cliente->delete();
         return response()->json('el registro a sido eliminado ');
     }
 }

@@ -19,7 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 import axios from 'axios';
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Categoria', require('./components/Categoria/ShowComponent.vue').default);
 Vue.component('Cliente', require('./components/Cliente/ShowComponent.vue').default);

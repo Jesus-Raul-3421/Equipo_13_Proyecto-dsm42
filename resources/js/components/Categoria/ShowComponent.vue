@@ -21,6 +21,9 @@
                                 <tr v-for="categoria in categoria" :key="categoria.id">
                                 <td v-text="categoria.id"></td>
                                 <td v-text="categoria.nombre"></td>
+                                <td v-text="categoria.Tipo"></td>
+                                <td v-text="categoria.nivel"></td>
+                                <td v-text="categoria.descripcion"></td>
                                 <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(categoria)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deletecategoria" type="button" class="btn btn-danger" v-on:click="deleteid(categoria)"><i class="fas fa-trash"></i></button></td>
@@ -114,7 +117,10 @@
             return{
             categoria: [],
             categoriadelete: [],
-            categoriaedit: [],    
+            categoriaedit: [], 
+            nuevacategoria:{
+                    nombre:""
+                }   
                 };
              
             },

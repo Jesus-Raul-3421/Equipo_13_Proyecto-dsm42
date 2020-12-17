@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Clientes</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,26 +14,29 @@
                         </div>
                     @endif
 
-                    <categoria-index inline-template>
+                    <cliente-index inline-template>
                         <table class="table table-hover table-striped">
                         <thead>
                             <tr>
                             <th>id</th>
                             <th>nombre</th>
-                            <th>Tipo</th>
-                            <th>nivel</th>
-                            <th>descripcion</th>
+                            <th>apellido</th>
+                            <th>correo</th>
+                             <th>telefono</th>
                              <th>Acciones</th>
                             </thead>
                             <body>
-                            <tr v-for="categoria in categoria">
-                                <td v-text="categoria.id"></td>
-                                <td v-text="categoria.nombre"></td>
-                                <td><button>Edit</button></td>
+                            <tr v-for="cliente in cliente">
+                                <td v-text="cliente.id"></td>
+                                <td v-text="cliente.nombre"></td>
+                                <td v-text="cliente.apellido"></td>
+                                <td v-text="cliente.correo"></td>
+                                <td v-text="cliente.telefono"></td>
+                                 <td><button>Edit</button></td>
                                 </tr>
                             </body>
 
-                    </categoria-index>
+                    </cliente-index>
                 </div>
             </div>
         </div>

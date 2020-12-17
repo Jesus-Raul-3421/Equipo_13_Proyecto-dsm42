@@ -2018,12 +2018,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       categoria: [],
       categoriadelete: [],
-      categoriaedit: []
+      categoriaedit: [],
+      nuevacategoria: {
+        nombre: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -2206,12 +2212,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       cliente: [],
       clientedelete: [],
-      clienteedit: []
+      clienteedit: [],
+      nuevocliente: {
+        nombre: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -2393,12 +2405,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       domicilio: [],
       domiciliodelete: [],
-      domicilioedit: []
+      domicilioedit: [],
+      nuevodomicilio: {
+        direccion: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -2612,12 +2632,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       productos: [],
       productosdelete: [],
-      productosedit: []
+      productosedit: [],
+      nuevoproductos: {
+        nombre: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -38284,6 +38309,14 @@ var render = function() {
             _vm._v(" "),
             _c("td", { domProps: { textContent: _vm._s(categoria.nombre) } }),
             _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(categoria.Tipo) } }),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(categoria.nivel) } }),
+            _vm._v(" "),
+            _c("td", {
+              domProps: { textContent: _vm._s(categoria.descripcion) }
+            }),
+            _vm._v(" "),
             _c("td", [
               _c(
                 "button",
@@ -38746,6 +38779,12 @@ var render = function() {
             _c("td", { domProps: { textContent: _vm._s(cliente.id) } }),
             _vm._v(" "),
             _c("td", { domProps: { textContent: _vm._s(cliente.nombre) } }),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(cliente.apellido) } }),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(cliente.correo) } }),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(cliente.telefono) } }),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -39212,6 +39251,18 @@ var render = function() {
               domProps: { textContent: _vm._s(domicilio.direccion) }
             }),
             _vm._v(" "),
+            _c("td", {
+              domProps: { textContent: _vm._s(domicilio.codigo_postal) }
+            }),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(domicilio.telefono) } }),
+            _vm._v(" "),
+            _c("td", { domProps: { textContent: _vm._s(domicilio.pais) } }),
+            _vm._v(" "),
+            _c("td", {
+              domProps: { textContent: _vm._s(domicilio.provivencia) }
+            }),
+            _vm._v(" "),
             _c("td", [
               _c(
                 "button",
@@ -39512,7 +39563,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("pais")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("provivencia")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("provivencia")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acciones")])
       ])
     ])
   },
@@ -39721,6 +39774,14 @@ var render = function() {
             _c("td", { domProps: { textContent: _vm._s(productos.id) } }),
             _vm._v(" "),
             _c("td", { domProps: { textContent: _vm._s(productos.nombre) } }),
+            _vm._v(" "),
+            _c("td", {
+              domProps: { textContent: _vm._s(productos.descripcion) }
+            }),
+            _vm._v(" "),
+            _c("td", {
+              domProps: { textContent: _vm._s(productos.categoria) }
+            }),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -52346,7 +52407,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = 'http://127.0.0.1:8000/api/';
+axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = 'http://127.0.0.1:8000/';
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('Categoria', __webpack_require__(/*! ./components/Categoria/ShowComponent.vue */ "./resources/js/components/Categoria/ShowComponent.vue")["default"]);
 Vue.component('Cliente', __webpack_require__(/*! ./components/Cliente/ShowComponent.vue */ "./resources/js/components/Cliente/ShowComponent.vue")["default"]);

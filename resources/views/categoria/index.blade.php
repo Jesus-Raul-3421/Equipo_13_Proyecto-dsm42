@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Categorias</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,25 +14,29 @@
                         </div>
                     @endif
 
-                    <productos-index inline-template>
+                    <categoria-index inline-template>
                         <table class="table table-hover table-striped">
                         <thead>
                             <tr>
                             <th>id</th>
                             <th>nombre</th>
+                            <th>Tipo</th>
+                            <th>nivel</th>
                             <th>descripcion</th>
-                            <th>categoria</th>
-                            <th>Acciones</th>
+                             <th>Acciones</th>
                             </thead>
                             <body>
-                            <tr v-for="productos in productos">
-                                <td v-text="productos.id"></td>
-                                <td v-text="productos.nombre"></td>
-                                  <td><button>Edit</button></td>
+                            <tr v-for="categoria in categoria">
+                                <td v-text="categoria.id"></td>
+                                <td v-text="categoria.nombre"></td>
+                                <td v-text="categoria.Tipo"></td>
+                                <td v-text="categoria.nivel"></td>
+                                <td v-text="categoria.descripcion"></td>
+                                <td><button>Edit</button></td>
                                 </tr>
                             </body>
 
-                    </productos-index>
+                    </categoria-index>
                 </div>
             </div>
         </div>

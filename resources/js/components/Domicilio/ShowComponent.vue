@@ -15,12 +15,17 @@
                                 <th scope="col">telefono</th>
                                 <th scope="col">pais</th>
                                 <th scope="col">provivencia</th>
+                                <th scope="col">Acciones</th>
                              </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="domicilio in domicilio" :key="domicilio.id">
                                 <td v-text="domicilio.id"></td>
                                 <td v-text="domicilio.direccion"></td>
+                                <td v-text="domicilio.codigo_postal"></td>
+                                <td v-text="domicilio.telefono"></td>
+                                <td v-text="domicilio.pais"></td>
+                                <td v-text="domicilio.provivencia"></td>
                                  <td>
                                 <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-secondary" v-on:click="updateid(domicilio)"><i class="fas fa-pen"></i></button>
                                 <button data-toggle="modal" data-target="#deletedomicilio" type="button" class="btn btn-danger" v-on:click="deleteid(domicilio)"><i class="fas fa-trash"></i></button></td>
@@ -114,9 +119,12 @@
             return{
             domicilio: [],
             domiciliodelete: [],
-            domicilioedit: [],    
+            domicilioedit: [],
+            nuevodomicilio:{
+                    direccion:""
+                }    
                 };
-             
+    
             },
             mounted() {
             this.getdomicilio();

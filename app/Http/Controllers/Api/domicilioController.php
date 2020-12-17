@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\tienda;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\gestor;
-use App\Http\Requests\gestor as gestorRequests;
+use App\domicilio;
+use App\Http\Requests\domicilio as domicilioRequests;
 
-class gestorController extends Controller
+class domicilioController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $gestor;
-       public function __construct (gestor $gestor) {
-       $this->gestor = $gestor;
+    protected $domicilio;
+       public function __construct (domicilio $domicilio) {
+       $this->domicilio = $domicilio;
        }
-
+      
+      
     public function index()
     {
         //
-        $gestor = gestor ::all();
-        return response()->json(['gestor'=> $gestor]);
+        $domicilio = domicilio::all();
+        return response()->json(['domicilio'=> $domicilio]);
     }
 
     /**
@@ -34,7 +35,6 @@ class gestorController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -46,8 +46,8 @@ class gestorController extends Controller
     public function store(Request $request)
     {
         //
-        $gestor = $this->gestor->create($request->all());
-        if($gestor = true){
+        $domicilio = $this->domicilio->create($request->all());
+        if($domicilio = true){
             return response()->json(['error'=>true,'mensaje'=>'su registro fu un exito']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'su registro no se guardo vuelve intentar']);
@@ -63,8 +63,8 @@ class gestorController extends Controller
     public function show($id)
     {
         //
-        $gestor = gestor::find($id);
-        return response()->json($gestor); 
+        $domicilio = domicilio ::find($id);
+        return response()->json($domicilio); 
     }
 
     /**
@@ -85,11 +85,11 @@ class gestorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(gestorRequest $request,gestor $gestor)
+    public function update(domicilioRequest $request,domicilio $domicilio)
     {
         //
-        $gestor->update($request->all());
-        if($gestor= true){
+        $domicilio->update($request->all());
+        if($domicilio = true){
             return response()->json(['error'=>true,'mensaje'=>'se actualizo el registro']);
         }else{
             return response()->json(['error'=>false,'mensaje'=>'vuelve intetar actualizar']);
@@ -102,10 +102,10 @@ class gestorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gestor $gestor)
+    public function destroy(domicilio $domicilio)
     {
         //
-        $gestor->delete();
+        $domicilio->delete();
         return response()->json('el registro a sido eliminado ');
     }
 }

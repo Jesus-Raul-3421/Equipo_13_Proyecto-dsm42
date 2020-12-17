@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Pedidos a domicilio</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -30,6 +30,10 @@
                             <tr v-for="domicilio in domicilio">
                                 <td v-text="domicilio.id"></td>
                                 <td v-text="domicilio.direccion"></td>
+                                <td v-text="domicilio.codigo_postal"></td>
+                                <td v-text="domicilio.telefono"></td>
+                                <td v-text="domicilio.pais"></td>
+                                <td v-text="domicilio.provivencia"></td>
                                 <td><button>Edit</button></td>
                                 </tr>
                             </body>
